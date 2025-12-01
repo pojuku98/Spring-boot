@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cartBackTest.dao.CartItemDAO">
+    <select id="findAll" resultType="com.example.cartBackTest.entity.CartItem">
+        SELECT * FROM cart_item
+    </select>
+
+    <select id="findById" parameterType="long" resultType="com.example.cartBackTest.entity.CartItem">
+        SELECT * FROM cart_item WHERE id = #{id}
+    </select>
+
+    <insert id="save" parameterType="com.example.cartBackTest.entity.CartItem" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO cart_item (product_name, quantity, price)
+        VALUES (#{productName}, #{quantity}, #{price})
+    </insert>
+
+    <update id="update" parameterType="com.example.cartBackTest.entity.CartItem">
+        UPDATE cart_item
+        SET product_name = #{productName}, quantity = #{quantity}, price = #{price}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM cart_item WHERE id = #{id}
+    </delete>
+</mapper>
